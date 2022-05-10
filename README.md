@@ -24,7 +24,7 @@ This repository contains a VSCode Remote Container Setup for developing NodeJS b
 
 The remote container honors the following environment variables set in the .devcontainer/.env
 
-> _Note: You can copy the .devcontainer/.env.template file to .devcontainer/.env and supply the following variables_
+> _Note: You can copy the [.devcontainer/.env.template](.devcontainer/.env.template) file to .devcontainer/.env and supply the following variables_
 
 ##### AWS
 
@@ -56,11 +56,11 @@ This template contains a single lambda function triggered by an HTTP request mad
 
 `yarn start`
 
-Use the APIs from the provided `postman_collection.json`
+Use the APIs from the provided [postman_collection.json](postman_collection.json)
 
 #### Debugging - Local
 
-All of the package.json scripts defined above can be run in a 'JavaScript Debug Terminal' which automatically attaches the debugger.
+All of the [package.json](package.json) scripts defined above can be run in a 'JavaScript Debug Terminal' which automatically attaches the debugger.
 
 #### Project structure
 
