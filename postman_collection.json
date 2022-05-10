@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "4c68dfae-660c-4431-ba51-4a377ff71d13",
+		"name": "SLS AWS Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Hello  | Localhost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jaime\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hello | AWS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jaime\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vj4picifke.execute-api.us-east-1.amazonaws.com/dev/hello",
+					"protocol": "https",
+					"host": [
+						"vj4picifke",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

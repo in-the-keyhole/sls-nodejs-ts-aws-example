@@ -1,59 +1,68 @@
-# Serverless - AWS Node.js Typescript
+# sls-nodejs-ts-aws-example
+
 
 This project has been generated using the `aws-nodejs-typescript` template from the [Serverless framework](https://www.serverless.com/).
 
 For detailed instructions, please refer to the [documentation](https://www.serverless.com/framework/docs/providers/aws/).
 
-## Installation/deployment instructions
+This repository contains a VSCode Remote Container Setup for developing NodeJS based AWS Lambda functions using the Serverless Framework.
 
-Depending on your preferred package manager, follow the instructions below to deploy your project.
+## Visual Studio Code - Remote Container Usage
 
-> **Requirements**: NodeJS `lts/fermium (v.14.15.0)`. If you're using [nvm](https://github.com/nvm-sh/nvm), run `nvm use` to ensure you're using the same Node version in local and in your lambda's runtime.
+> [Official Documentation](https://code.visualstudio.com/docs/remote/containers)
 
-### Using NPM
+> _Note: Once you meet the prerequisites, you can run **ANY** Visual Studio Code Remote Container, which provides a Docker based development environment ensuring a consistent and reliable set of tooling needed to interact and execute a repository codebase_
 
-- Run `npm i` to install the project dependencies
-- Run `npx sls deploy` to deploy this stack to AWS
+### Prerequisites:
 
-### Using Yarn
+1. macOS, Windows, Linux -- [System Requirements](https://code.visualstudio.com/docs/remote/containers#_system-requirements)
+2. Docker - [Documentation](https://code.visualstudio.com/docs/remote/containers#_installation)
+3. Visual Studio Code - [Official Site](https://code.visualstudio.com/)
+4. Remote - Containers _Visual Studio Code extension_ - [Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-- Run `yarn` to install the project dependencies
-- Run `yarn sls deploy` to deploy this stack to AWS
+#### Environment Variables
 
-## Test your service
+The remote container honors the following environment variables set in the .devcontainer/.env
+
+> _Note: You can copy the .devcontainer/.env.template file to .devcontainer/.env and supply the following variables_
+
+##### AWS
+
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_REGION - (optional - defaults to us-east-2)
+
+> _Note: Changes to variables in .env after the container is running will require the Remote Container to be restarted_
+
+#### Developer Configuration
+
+To initialize the environment, once the repository is opened in the Remote Container, open a Terminal and type:
+
+`yarn`
+
+### Usage & Things you can do
+
+#### package.json Scripts
+
+There are some predefined scripts in package.json that can be used to simplify common tasks.
+
+- `yarn start` - runs the functions locally using the AWS configuration
+- `yarn deploy` - deploys the functions to AWS
+- `yarn undeploy` - undeploys the functions from AWS
+
+#### Test the service
 
 This template contains a single lambda function triggered by an HTTP request made on the provisioned API Gateway REST API `/hello` route with `POST` method. The request body must be provided as `application/json`. The body structure is tested by API Gateway against `src/functions/hello/schema.ts` JSON-Schema definition: it must contain the `name` property.
 
-- requesting any other path than `/hello` with any other method than `POST` will result in API Gateway returning a `403` HTTP error code
-- sending a `POST` request to `/hello` with a payload **not** containing a string property named `name` will result in API Gateway returning a `400` HTTP error code
-- sending a `POST` request to `/hello` with a payload containing a string property named `name` will result in API Gateway returning a `200` HTTP status code with a message saluting the provided name and the detailed event processed by the lambda
+`yarn start`
 
-> :warning: As is, this template, once deployed, opens a **public** endpoint within your AWS account resources. Anybody with the URL can actively execute the API Gateway endpoint and the corresponding lambda. You should protect this endpoint with the authentication method of your choice.
+Use the APIs from the provided `postman_collection.json`
 
-### Locally
+#### Debugging - Local
 
-In order to test the hello function locally, run the following command:
+All of the package.json scripts defined above can be run in a 'JavaScript Debug Terminal' which automatically attaches the debugger.
 
-- `npx sls invoke local -f hello --path src/functions/hello/mock.json` if you're using NPM
-- `yarn sls invoke local -f hello --path src/functions/hello/mock.json` if you're using Yarn
-
-Check the [sls invoke local command documentation](https://www.serverless.com/framework/docs/providers/aws/cli-reference/invoke-local/) for more information.
-
-### Remotely
-
-Copy and replace your `url` - found in Serverless `deploy` command output - and `name` parameter in the following `curl` command in your terminal or in Postman to test your newly deployed application.
-
-```
-curl --location --request POST 'https://myApiEndpoint/dev/hello' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name": "Frederic"
-}'
-```
-
-## Template features
-
-### Project structure
+#### Project structure
 
 The project code base is mainly located within the `src` folder. This folder is divided in:
 
